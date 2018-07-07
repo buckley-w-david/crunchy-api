@@ -1,0 +1,12 @@
+[tool.poetry]
+name = "crunchy-api"
+version = "0.1.0"
+description = ""
+authors = ["David Buckley <buckley.w.david@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.19"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
