@@ -11,6 +11,7 @@ from crunchy_api import types
 @click.group()
 @click.option("--username", required=True, envvar="CRUNCHYROLL_USERNAME")
 @click.option("--password", envvar="CRUNCHYROLL_PASSWORD")
+@click.option("--token", required=True, envvar="CRUNCHYROLL_TOKEN")
 @click.option("--locale", default="enUS", envvar="CRUNCHYROLL_LOCALE")
 @click.option(
     "--stdin-password", is_flag=True, default=False, help="Read password in from stdin"
@@ -20,6 +21,7 @@ def main(
     ctx: click.core.Context,
     username: str,
     password: str,
+    token: str,
     locale: str,
     stdin_password: bool,
 ) -> None:
@@ -28,7 +30,7 @@ def main(
 
     if stdin_password:
         password = input()
-    ctx.obj = CrunchyrollApi(username, password)
+    ctx.obj = CrunchyrollApi(username, password, token)
 
 
 @main.command()

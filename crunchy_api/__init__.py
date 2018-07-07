@@ -17,7 +17,6 @@ https://github.com/CloudMax94/crunchyroll-api/wiki/Api
 API_VERSION = "0"
 URL = Template(f"https://api.crunchyroll.com/$method.{API_VERSION}.json")
 VERSION = "1.1.21.0"
-TOKEN = "###########"
 DEVICE = "com.crunchyroll.windows.desktop"
 
 LOGGER = logging.getLogger(__name__)
@@ -55,12 +54,12 @@ def retry_on_error(func):
         if attempt["error"]:
             self = args[0]  # This feels clever in the worst kind of way
             self._session_id = _refresh_session(
-                self._device_id,  # pylint: disable=protected-access
+                self._device_id, # pylint: disable=protected-access
                 DEVICE,
-                TOKEN,
+                self._token, # pylint: disable=protected-access
                 VERSION,
                 self.locale,
-                self._auth,  # pylint: disable=protected-access
+                self._auth, # pylint: disable=protected-access
             )
             attempt = func(*args, **kwargs)
             if attempt["error"]:
@@ -93,11 +92,12 @@ class CrunchyrollApi:
         payload.update(version=VERSION, locale=self.locale, session_id=self._session)
         return _make_request(method, payload)
 
-    def __init__(self, username, password, locale="enUS") -> None:
+    def __init__(self, username, password, token, locale="enUS") -> None:
         self._session_id = None
         self._auth = None
         self._username = username
         self._password = password
+        self._token = token
         char_set = "0123456789abcdefghijklmnopqrstuvwxyz0123456789"
         self._device_id = "".join(
             [
@@ -117,7 +117,7 @@ class CrunchyrollApi:
     def _session(self):
         if not self._session_id:
             self._session_id = _refresh_session(
-                self._device_id, DEVICE, TOKEN, VERSION, self.locale, self._auth
+                self._device_id, DEVICE, self._token, VERSION, self.locale, self._auth
             )
         return self._session_id
 
