@@ -17,15 +17,16 @@ https://github.com/CloudMax94/crunchyroll-api/wiki/Api
 API_VERSION = "0"
 URL = Template(f"https://api.crunchyroll.com/$method.{API_VERSION}.json")
 VERSION = "1.1.21.0"
-TOKEN = "LNDJgOit5yaRIWN"
+TOKEN = "###########"
 DEVICE = "com.crunchyroll.windows.desktop"
 
-LOG_MSG = Template("endpoint: $endpoint\ndata: $data")
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
 
 def _make_request(method: str, payload: dict) -> dict:
     endpoint = URL.substitute(method=method)
     data = urlencode(payload).encode("utf-8")
-    logging.info("endpoint: %s\ndata: %s", endpoint, data)
+    LOGGER.info("endpoint: %s\ndata: %s", endpoint, data)
     request = urlopen(endpoint, data)
     return json.loads(request.read().decode("utf-8"))
 

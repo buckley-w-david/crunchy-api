@@ -8,7 +8,6 @@ import crunchy_api
 from crunchy_api import CrunchyrollApi
 from crunchy_api import types
 
-
 @click.group()
 @click.option("--username", required=True, envvar="CRUNCHYROLL_USERNAME")
 @click.option("--password", envvar="CRUNCHYROLL_PASSWORD")
