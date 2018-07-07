@@ -1,8 +1,13 @@
 [tool.poetry]
 name = "crunchy-api"
-version = "0.1.0"
-description = ""
+version = "0.2.0"
+description = "Python wrapper for the Crunchyroll API"
 authors = ["David Buckley <buckley.w.david@gmail.com>"]
+license = "MIT"
+
+readme = 'README.md'
+repository = "https://github.com/buckley-w-david/crunchy-api"
+homepage = "https://github.com/buckley-w-david/crunchy-api"
 
 [tool.poetry.dependencies]
 python = "^3.6"
