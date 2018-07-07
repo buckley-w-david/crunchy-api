@@ -6,7 +6,13 @@ authors = ["David Buckley <buckley.w.david@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-requests = "^2.19"
+click = {version = "^6.7", optional = true}
+
+[tool.poetry.extras]
+cli = ["click"]
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
+
+[tool.poetry.scripts]
+crunchy = 'crunchy_api.cli:main'
