@@ -8,7 +8,7 @@ from urllib.request import urlopen
 
 from crunchy_api.types import Field, ObjectType, MediaType, SortMode
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 """
 Api documentation
